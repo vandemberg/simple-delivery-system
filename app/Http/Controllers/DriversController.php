@@ -56,7 +56,11 @@ class DriversController extends Controller
 
     public function destroy(Driver $driver)
     {
+        $driverName = $driver->name;
         $driver->delete();
-        return redirect()->to('/drivers');
+
+        return redirect()
+            ->route('drivers')
+            ->with('success', "Motorista {$driverName} removido com sucesso");
     }
 }
