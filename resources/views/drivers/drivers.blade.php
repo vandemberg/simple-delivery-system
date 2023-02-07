@@ -1,20 +1,17 @@
 <x-app-layout>
-  <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-        {{ __('Motorista') }}
-    </h2>
-  </x-slot>
+  <x-page-header title="Motorista"></x-page-header>
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6">
-              <div class="w-full flex flex-row justify-between">
-                <h2>Listagem de Motoristas</h2>
+              <x-page-title title="Lista de motoristas">
                 <a href="{{ route('drivers.create') }}">
                   <x-primary-button>Novo motorista</x-primary-button>
                 </a>
-              </div>
+              </x-page-title>
+
+              <x-alert-success></x-alert-success>
 
               @if (sizeof($drivers))
                 <table class="mt-6 w-full text-left text-sm">
@@ -43,9 +40,7 @@
                             </x-danger-button>
 
                             <a href="{{ route('drivers.edit', $driver->id) }}">
-                              <x-secondary-button
-                                class="ml-2"
-                              >
+                              <x-secondary-button class="ml-2">
                                 editar
                               </x-secondary-button>
                             </a>

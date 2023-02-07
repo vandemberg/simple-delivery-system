@@ -31,7 +31,8 @@ class DriversController extends Controller
         $driver->fill($validatedDriver);
         $driver->save();
 
-        return redirect()->to('/drivers')->with('newDriver', $driver);
+        return redirect()->route('drivers')
+            ->with('success', 'Motorista cadastrado com sucesso');
     }
 
     public function edit(Driver $driver)

@@ -37,4 +37,9 @@
 
         @yield('scripts')
     </body>
+    <script>
+        function closeAlert(element) {
+            $(element).parent().parent().remove();
+        }
+    </script>
 </html>
