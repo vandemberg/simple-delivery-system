@@ -4,7 +4,6 @@ use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\DeliveriesController;
 use App\Http\Controllers\DriversController;
 use App\Http\Controllers\ProfileController;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +21,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return redirect()->to('/dashboard');
-    });
+    Route::get(
+        '/',
+        function () {
+            return redirect()->to('/dashboard');
+        }
+    );
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -37,8 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/drivers/store', [DriversController::class, 'store'])->name('drivers.store');
     Route::delete('/drivers/{driver}', [DriversController::class, 'destroy'])->name('drivers.destroy');
 
-    Route::get('/deliveries', [DeliveriesController::class, 'index'])->name('deliveries');
     Route::get('/customers', [CustomersController::class, 'index'])->name('customers');
+    Route::get('/customers/create', [CustomersController::class, 'create'])->name('customers.create');
+    Route::post('/customers/store', [CustomersController::class, 'store'])->name('customers.store');
+    Route::get('/customers/edit/{customer}', [CustomersController::class, 'edit'])->name('customers.edit');
+    Route::patch('/customers/update/{customer}', [CustomersController::class, 'update'])->name('customers.update');
+    Route::delete('/customers/{customer}', [CustomersController::class, 'destroy'])->name('customers.destroy');
+
+    Route::post('/deliveries/store', [DeliveriesController::class, 'store'])->name('deliveries.store');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
