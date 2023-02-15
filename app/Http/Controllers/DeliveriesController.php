@@ -8,6 +8,9 @@ class DeliveriesController extends Controller
 {
     public function index()
     {
-        return view('deliveries.index');
+        $deliveries = [];
+
+        return view('deliveries.index')
+            ->with('deliveries', $deliveries);
     }
 }
