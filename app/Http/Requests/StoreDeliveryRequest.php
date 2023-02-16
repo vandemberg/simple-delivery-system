@@ -13,7 +13,7 @@ class StoreDeliveryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreDeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'description' => 'required',
+            'CEP' => 'required',
+            'address' => 'required',
+            'customer_id' => 'required|exists:App\Models\Customer,id',
         ];
     }
 }

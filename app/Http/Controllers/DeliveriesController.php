@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDeliveryRequest;
+use App\Models\Delivery;
 
 class DeliveriesController extends Controller
 {
-    public function index()
+    public function store(StoreDeliveryRequest $request)
     {
-        $deliveries = [];
+        $delivery_hash = $request->validated();
+        Delivery::create($delivery_hash);
 
-        return view('deliveries.index')
-            ->with('deliveries', $deliveries);
+        return redirect('dashboard')
+            ->with('success', 'Entrega cadastrada com sucesso');
     }
 }
