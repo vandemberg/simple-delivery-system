@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Delivery extends Model
 {
+    const VALID_STATUS = [
+        'PROCESSING',
+        'INPROGRESS',
+        'DELIVERED',
+        'CANCELED',
+    ];
+
     use HasFactory;
 
     protected $fillable = [

@@ -19,7 +19,7 @@
     </div>
 
     @if(count($deliveries) > 0)
-        <div>
+        <div class="mb-8">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -27,10 +27,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>NOME</th>
-                                    <th>TELEFONE</th>
-                                    <th>ENDEREÇO</th>
+                                    <th>DESCRIÇÃO</th>
+                                    <th>CLIENTE</th>
                                     <th>MOTORISTA</th>
+                                    <th>SITUAÇÃO</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -39,17 +39,20 @@
                                     <tr>
                                         <td>{{ $delivery->id }}</td>
                                         <td>{{ $delivery->customer->name }}</td>
-                                        <td>{{ $delivery->customer->phone }}</td>
-                                        <td>{{ $delivery->customer->fullAddress() }}</td>
                                         <td>{{ $delivery->driverName() }}</td>
+                                        <td>{{ __("delivery.".$delivery->status) }}</td>
                                         <td>
-                                            <x-secondary-button>EDITAR</x-secondary-button>
-                                            <x-danger-button>CANCELAR</x-primary-button>
+                                            @include('dashboard.partials.edit-delivery', [
+                                                'delivery' => $delivery,
+                                            ])
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-6 px-12">
+                            {{ $deliveries->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

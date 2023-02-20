@@ -46,7 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/customers/update/{customer}', [CustomersController::class, 'update'])->name('customers.update');
     Route::delete('/customers/{customer}', [CustomersController::class, 'destroy'])->name('customers.destroy');
 
+
     Route::post('/deliveries/store', [DeliveriesController::class, 'store'])->name('deliveries.store');
+    Route::patch('/deliveries/update/{delivery}', [DeliveriesController::class, 'update'])->name('deliveries.update');
 });
 
 require __DIR__ . '/auth.php';

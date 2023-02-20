@@ -16,4 +16,9 @@ class DeliveriesController extends Controller
         return redirect('dashboard')
             ->with('success', 'Entrega cadastrada com sucesso');
     }
+
+    public function update()
+    {
+
+    }
 }
