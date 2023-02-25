@@ -15,6 +15,7 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+        @livewireStyles
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -35,11 +36,11 @@
             </main>
         </div>
 
-        @yield('scripts')
+        @livewireScripts
+        <script>
+            function closeAlert(element) {
+                $(element).parent().parent().remove();
+            }
+        </script>
     </body>
-    <script>
-        function closeAlert(element) {
-            $(element).parent().parent().remove();
-        }
-    </script>
 </html>

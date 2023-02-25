@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDeliveryRequest;
+use App\Http\Requests\UpdateDeliveryRequest;
 use App\Models\Delivery;
 
 class DeliveriesController extends Controller
@@ -13,12 +14,17 @@ class DeliveriesController extends Controller
         $delivery_hash = $request->validated();
         Delivery::create($delivery_hash);
 
-        return redirect('dashboard')
-            ->with('success', 'Entrega cadastrada com sucesso');
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
-    public function update()
+    public function update(UpdateDeliveryRequest $request, Delivery $delivery)
     {
+        $delivery->update($request->validated());
 
+        return response()->json([
+            "success" => true,
+        ], 200);
     }
 }

@@ -8,11 +8,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Delivery extends Model
 {
+    const PROCESSING = 'PROCESSING';
+    const INPROGRESS = 'INPROGRESS';
+    const DELIVERED = 'DELIVERED';
+    const CANCELED = 'CANCELED';
     const VALID_STATUS = [
-        'PROCESSING',
-        'INPROGRESS',
-        'DELIVERED',
-        'CANCELED',
+        Delivery::PROCESSING,
+        Delivery::INPROGRESS,
+        Delivery::DELIVERED,
+        Delivery::CANCELED,
+    ];
+
+    const OPEN_STATUS = [
+        Delivery::PROCESSING,
+        Delivery::INPROGRESS,
     ];
 
     use HasFactory;

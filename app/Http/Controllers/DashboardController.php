@@ -13,9 +13,13 @@ class DashboardController extends Controller
         $deliveries = Delivery::paginate(10);
         $delivery = new Delivery();
 
+        $lateDeliveries = Delivery::all()->where('delivery_at', '<', date('Y-m-d'))
+            ->whereIn('status', Delivery::OPEN_STATUS);
+
         return view('dashboard.list')
             ->with('deliveries', $deliveries)
             ->with('customers', $customers)
-            ->with('delivery', $delivery);
+            ->with('delivery', $delivery)
+            ->with('lateDeliveries', $lateDeliveries);
     }
 }
