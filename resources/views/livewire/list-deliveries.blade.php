@@ -31,9 +31,11 @@
                                     <td>{{ $delivery->driverName() }}</td>
                                     <td>{{ __("delivery.".$delivery->status) }}</td>
                                     <td>
-                                        @include('dashboard.partials.edit-delivery', [
-                                            'delivery' => $delivery,
-                                        ])
+                                        <x-secondary-button
+                                            x-data="{{$delivery->toJson()}}"
+                                        >
+                                            Editar <i class="pl-1 fa-solid fa-pencil"></i>
+                                        </x-secondary-button>
                                     </td>
                                 </tr>
                             @endforeach
